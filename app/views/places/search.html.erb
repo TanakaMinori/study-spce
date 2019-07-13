@@ -1,0 +1,11 @@
+
+
+<p>検索結果は：<%= @places.count %>件です</p>
+
+
+<% @places.each do |place| %>
+<%=link_to "#{place[:name]}", new_place_path(place) %><%= place[:area] %><%= place[:lon].to_f %>,<%= place[:lat].to_f %><br>
+<% end %>
+ 
+
+  

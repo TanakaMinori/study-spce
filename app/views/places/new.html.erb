@@ -1,0 +1,18 @@
+<%= form_for @place do |f| %>
+  <p>レビュー対象：<%= @name %></p>
+  
+    <%= f.fields_for :reviews do |r| %>
+      <%= r.select :category, ["カフェ", "シェアオフィス","その他"] %>
+      <%= r.label :recommend_rate, "おすすめ度 (※1.絶対すすめない〜10.とてもすすめたい)"%>
+      <%= r.select :recommend_rate, options_for_select((1..10).to_a) %><br>
+      <%= r.label :wifi_rate, "Wifi速度(※1.とても遅い〜10.とても速い)" %>
+      <%= r.select :wifi_rate, options_for_select((1..10).to_a) %><br>
+      <%= r.label :text, "レビュー" %><br>
+      <%= r.text_area :text, placeholder: "レビューを入力", autofocus: true, cols:"40", rows:"15" %><br>
+    <% end %>
+  <%= f.hidden_field :place_name, value: @name.to_s %>
+  <%= f.hidden_field :lat, value: @lat.to_f %>
+  <%= f.hidden_field :lon, value: @lon.to_f %>
+  <%= f.hidden_field :area_name, value: @area.to_s %>
+  <%= f.submit "投稿する" %>
+<% end %>

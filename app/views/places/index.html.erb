@@ -1,0 +1,7 @@
+<%= form_tag search_places_path, method: :get do %>
+  <input name="keyword" placeholder="キーワードで検索" type="text" value="">
+  <button class="btn-search" title="検索" type="submit"><i class="icon-search"></i></button></input>
+<% end %>
+<% @areas.each do |area| %>
+  <%= link_to area[:area_name], reviews_path(area[:area_name]) %>
+<% end %>
