@@ -1,3 +1,55 @@
 // Place all the styles related to the reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.review-place_name {
+  font-size: 18px;
+  text-decoration: underline;
+}
+.submit-btn{
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 100px;
+  margin: 10px auto;
+  box-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+  grid-area: btn;
+}
+.new-form span{
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.new-form-content {
+  grid-area: form;
+  margin: 0 auto;
+}
+.new-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: 
+  "form"
+  "btn"
+}
+.comment-form {
+  width: 100%;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.create-wrap {
+  width: 300px;
+  height: 200px;
+  margin: 20px auto;
+  background-color: rgba(225,225,225,0.8);
+  text-align: center;
+  border-radius: 10px;
+}
+.create-wrap h3{
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 20px;
+  display: block;
+}
+.create-wrap p {
+  padding-bottom: 45px;
+  display: block;
+}

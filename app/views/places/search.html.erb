@@ -1,11 +1,10 @@
-
-
-<p>検索結果は：<%= @places.count %>件です</p>
-
-
-<% @places.each do |place| %>
-<%=link_to "#{place[:name]}", new_place_path(place) %><%= place[:area] %><%= place[:lon].to_f %>,<%= place[:lat].to_f %><br>
-<% end %>
- 
-
+<div class="background">
   
+  <span class="mb10">検索結果は<%= @places.count %>件です</span><br>
+  <div class="keyword-result-content">
+    <% @places.each do |place| %>
+    <span><%= link_to "#{place[:name]}", new_place_path(place), class:"keyword-result",data: {"turbolinks" => false} %></span>
+    <span>（<%= place[:address] %>）</span><br>
+    <% end %>
+  </div>
+</div>

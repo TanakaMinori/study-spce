@@ -1,0 +1,121 @@
+@charset "UTF-8";
+.show-container {
+  display: grid;
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 120px 1fr 1fr;
+  grid-template-areas: "place review" "map review" "map review"; }
+
+#place-container {
+  grid-area: place;
+  display: grid;
+  grid-template-columns: 80px 340px;
+  grid-template-rows: auto 30px auto; }
+
+@media screen and (max-width: 550px) {
+  .show-container {
+    grid-auto-columns: 100%; } }
+#place-container span, p {
+  margin-top: 0; }
+
+#map-container {
+  grid-area: map; }
+
+#map {
+  width: 400px;
+  height: 300px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4); }
+
+#review-container {
+  grid-area: review; }
+
+.review-wrap {
+  box-sizing: border-box;
+  border: 1px ridge #696969;
+  border-radius: 3px;
+  padding: 10px;
+  line-height: 1.9; }
+
+.large-font {
+  font-size: 16px; }
+
+.mb10 {
+  font-size: 25px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold; }
+
+.keyword-result-content {
+  font-size: 18px; }
+
+.keyword-result {
+  display: inline-block;
+  margin-bottom: 15px; }
+
+.place-index-name {
+  font-size: 20px;
+  display: inline-block;
+  padding-bottom: 10px;
+  padding-right: 10px; }
+
+.rate {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 16px;
+  font-size: 16px; }
+  .rate:before, .rate:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '★★★★★';
+    display: inline-block;
+    height: 16px;
+    line-height: 16px; }
+  .rate:before {
+    color: #ddd; }
+  .rate:after {
+    color: #ffa500;
+    overflow: hidden;
+    white-space: nowrap; }
+
+.rate0:after {
+  width: 8px; }
+
+.rate1:after {
+  width: 16px; }
+
+.rate1-5:after {
+  width: 24px; }
+
+.rate2:after {
+  width: 32px; }
+
+.rate2-5:after {
+  width: 40px; }
+
+.rate3:after {
+  width: 48px; }
+
+.rate3-5:after {
+  width: 56px; }
+
+.rate4:after {
+  width: 64px; }
+
+.rate4-5:after {
+  width: 72px; }
+
+.rate5:after {
+  width: 80px; }
+
+.wrap {
+  width: 80px;
+  margin: 0;
+  display: inline; }
+
+/*# sourceMappingURL=places.css.map */

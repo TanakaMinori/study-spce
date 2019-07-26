@@ -13,3 +13,247 @@
  *= require_tree .
  *= require_self
  */
+body {
+  font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+  background-image: url('index_image.jpg');
+  background-size: cover; 
+}
+header {
+  background-color: transparent;
+  height: 60px;
+  align-content: center;
+  display: grid;
+  grid-templete-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+  "logo . . home menu twitter"
+}
+
+.menu-logo {
+  color: white;
+  font-size: 30px;
+  font-family: 'YuMincho';
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-left: 20px;
+  grid-area: logo;
+}
+.home {
+  color: white;
+  opacity: 0.8;
+  font-size: 20px;
+  margin: auto 10px;
+  cursor: pointer;
+  grid-area: home;
+}
+.home:hover{
+  opacity: 1;
+}
+.menu {
+  color: white;
+  opacity: 0.8;
+  font-size: 20px;
+  margin: auto 10px;
+  cursor: pointer;
+  grid-area: menu;
+}
+.menu:hover{
+  opacity: 1;
+}
+.twitter {
+  margin: auto 10px;
+  opacity: 0.8;
+  grid-area: twitter;
+}
+.twitter:hover {
+  opacity: 1;
+}
+#tweet-icon-link  {
+  color: #55acee;
+}
+#index-container {
+  display: grid;
+  width: 88%;
+  margin: 0 auto;
+  grid-templete-columns: 1fr 1fr 1fr 1fr;
+  grid-templete-rows: 200px 100px auto;
+  grid-template-areas:
+  "... intro intro ..."
+  "... search write ..."
+  "... ... ... ..."
+}
+/*モバイル表示調整*/
+@media screen and (max-width: 550px) {
+  #index-container {
+    grid-auto-columns: auto;
+  }
+}
+#introduction {
+  color: white;
+  margin: 50px 0 80px 0;
+  grid-area: intro;
+}
+.btn-left {
+  border-radius: 10px;
+  grid-area: search;
+}
+.btn-right {
+  border-radius: 10px;
+  grid-area: write;
+}
+.title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+.introduction-phrase {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: '游ゴシック体', 'Yu Gothic', YuGothic, sans-serif;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+.button {
+  cursor: pointer;
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+  padding: 10px 15px;
+  font-size: 2.8vw;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 10px;
+  word-spacing: 8px;
+  
+}
+
+.btn {
+  opacity: 0.8;
+}
+.btn:hover {
+  opacity: 1;
+}
+#search-form, #area-index{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.6);
+  display: none;
+}
+.modal {
+  width: 500px;
+  height: 250px;
+  margin: 50px auto;
+  position: relative;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+}
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+.form-content {
+  height: 100px;
+  padding-top: 20px;
+}
+.form-content span{
+  font-size: 25px;
+}
+.form-content p {
+  font-size: 18px;
+  padding-top: 20px;
+}
+.form {
+  box-sizing: border-box;
+  width: 350px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-top: 50px;
+}
+.btn-search {
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: rgba(176,196,222, 0.4);
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+}
+.btn-search:hover {
+  opacity: 1;
+}
+#area-index {
+  display: none;
+}
+.area-modal{
+  width: 70%;
+  height: 80%;
+  margin: 50px auto;
+  position: relative;
+  text-align: left;
+  background-color: white;
+  border-radius: 20px;
+}
+.area-content {
+  height: 55%;
+  width: 90%;
+  margin: 10px auto;
+  padding-top: 20px;
+}
+.area-content span, .address-search span{
+  font-size: 2.5vw;
+}
+.area-wrap {
+  display: block;
+  height: 55%;
+  margin: 10px 5px;
+}
+.area {
+  font-size: 1.5vw;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #4682B4;
+  color: white;
+  border-radius: 5px;
+  padding: 3px 5px;
+  border: 1px solid #4682B4;
+}
+.address-search {
+  width: 90%;
+  margin: 10px auto;
+}
+.search-form {
+  box-sizing: border-box;
+  width: 80%;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.background{
+  width: 70%;
+  height: 80%;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.8)
+}
+.search-result{
+  font-size: 25px;
+  display: block;
+  margin-bottom: 10px;
+}
+.result-content{
+  font-size: 20px;
+}
+.result {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}

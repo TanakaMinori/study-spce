@@ -1,32 +1,35 @@
-<h3><%= @places[0][:area_name] %>のレビュー一覧</h3>全：<%= @places.count %>件
-<ul>
-  <% @places.each do |place| %>
-  <div data-turbolinks="false">
-    <li><%= link_to place[:place_name], place_path(place) %></li>
+<div class="background">
+  <div class="center-wrap">
+    <h3 class="mb10"><%= @places[0][:area_name] %>駅周辺のレビュー：<%= @places.count %>件</h3>
+      <% @places.each do |place| %>
+      <div data-turbolinks="false" class="place-index">
+        <span class="place-index-name"><%= link_to place[:place_name], place_path(place), class: "place-index-name" %></span>
+      
+        <div class="wrap">
+          <span class="place-index-name">おすすめ度：</span>
+          <% if place.reviews[0][:recommend_rate] <= 1 %>
+            <span class="rate rate0"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 2 %>
+            <span class="rate rate1"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 3 %>
+            <span class="rate rate1-5"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 4 %>
+            <span class="rate rate2"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 5 %>
+            <span class="rate rate2-5"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 6 %>
+            <span class="rate rate3"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 7 %>
+            <span class="rate rate3-5"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 8 %>
+            <span class="rate rate4"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 9 %>
+            <span class="rate rate4-5"></span>
+          <% elsif place.reviews[0][:recommend_rate] <= 10 %>
+            <span class="rate rate5"></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="wrap">
-    おすすめ度：
-    <% if place.reviews[0][:recommend_rate] <= 1 %>
-      <span class="rate rate0"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 2 %>
-      <span class="rate rate1"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 3 %>
-      <span class="rate rate1-5"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 4 %>
-      <span class="rate rate2"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 5 %>
-      <span class="rate rate2-5"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 6 %>
-      <span class="rate rate3"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 7 %>
-      <span class="rate rate3-5"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 8 %>
-      <span class="rate rate4"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 9 %>
-      <span class="rate rate4-5"></span>
-    <% elsif place.reviews[0][:recommend_rate] <= 10 %>
-      <span class="rate rate5"></span>
-    <% end %>
-  </div>
-  <% end %>
-</ul>
+</div>

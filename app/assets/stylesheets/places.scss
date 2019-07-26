@@ -1,6 +1,76 @@
 // Place all the styles related to the places controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.show-container {
+  display: grid;
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 120px 1fr 1fr;
+  grid-template-areas:
+    "place review"
+        "map review"
+        "map review"
+}
+#place-container {
+  grid-area: place;
+  display: grid;
+  grid-template-columns: 80px 340px;
+  grid-template-rows: auto 30px auto;
+}
+@media screen and (max-width: 550px) {
+    .show-container {
+      grid-auto-columns: 100%;
+    }
+  }
+#place-container span ,p {
+  margin-top: 0;
+}
+#map-container {
+  grid-area: map;
+}
+#map {
+  width: 400px;
+  height: 300px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.4);
+}
+#review-container {
+  grid-area: review;
+}
+.review-wrap {
+  box-sizing: border-box;
+  border: 1px ridge #696969;
+  border-radius: 3px;
+  padding: 10px;
+  line-height: 1.9;
+}
+.large-font {
+  font-size: 16px;
+}
+.mb10 {
+  font-size: 25px;
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.keyword-result-content {
+  font-size: 18px;
+}
+.keyword-result{
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.place-index-name{
+  font-size: 20px;
+  display: inline-block;
+  padding-bottom: 10px;
+  padding-right: 10px;
+}
+
 //レート評価 変数
 $starFull: 16px;//星1個の幅
 $starHalf: $starFull / 2;//星半分（0.5）の幅
@@ -75,4 +145,5 @@ $rate5 :$starFull * 5;//星5
 .wrap{
   width: 80px;
   margin: 0;
+  display: inline;
 }

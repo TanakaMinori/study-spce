@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
   def search
     keyword = params[:keyword]
     @appid = ENV["YAHOO_APP_ID"]
-    url = URI.parse(URI.escape("https://map.yahooapis.jp/search/local/V1/localSearch?appid=#{@appid}&query=#{keyword}&results=10"))
+    url = URI.parse(URI.escape("https://map.yahooapis.jp/search/local/V1/localSearch?appid=#{@appid}&query=#{keyword}&results=20&detail=full"))
     res = Net::HTTP.start(url.host, url.port, use_ssl: true){|http|
     http.get(url.path + "?" + url.query);}
 
@@ -15,17 +15,21 @@ class PlacesController < ApplicationController
 
     @names = doc.elements.each('YDF/Feature/Name'){|i|} 
     @geometries = doc.elements.each('YDF/Feature/Geometry/Coordinates'){|i|}
-    @areas = doc.elements.each('YDF/Feature/Property/Area/Name'){|i|}
+    @stations = doc.elements.each('YDF/Feature/Property/Station/Name'){|i|}
+    @urls = doc.elements.each('YDF/Feature/Property/Detail/PcUrl1'){|i|}
+    @addresses = doc.elements.each('YDF/Feature/Property/Address'){|i|}
     num = 0
     @places = []
-    while num < 10 do
-      unless @names[num].blank? || @areas[num].blank?
+    while num < 20 do
+      unless @names[num].blank? 
         name = @names[num].text
         geometry = @geometries[num].text
         @lat = geometry.split(",")[0].to_f
         @lon = geometry.split(",")[1].to_f
-        area = @areas[num].text
-        a_place = {name: name, lat: @lat, lon: @lon, area: area}
+        @station = @stations[num].text
+        @url = @urls[num].text
+        @address = @addresses[num].text
+        a_place = {name: name, lat: @lat, lon: @lon, area: @station, url: @url, address: @address}
         @places << a_place
         num += 1
       else
@@ -52,6 +56,8 @@ class PlacesController < ApplicationController
     @lat = params[:lat]
     @lon = params[:lon]
     @area = params[:area]
+    @address = params[:address]
+    @url = params[:url]
   end
   
   def create
@@ -60,7 +66,7 @@ class PlacesController < ApplicationController
   
   private
   def place_params
-    params.require(:place).permit(:place_name, :address, :area_name, :lat, :lon, reviews_attributes: [:category, :recommend_rate, :wifi_rate, :text])
+    params.require(:place).permit(:place_name, :address, :area_name, :lat, :lon, :url, reviews_attributes: [:category, :recommend_rate, :wifi_rate, :text, :image])
   end
 end
  

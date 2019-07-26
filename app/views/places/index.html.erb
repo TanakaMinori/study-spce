@@ -1,7 +1,57 @@
-<%= form_tag search_places_path, method: :get do %>
-  <input name="keyword" placeholder="キーワードで検索" type="text" value="">
-  <button class="btn-search" title="検索" type="submit"><i class="icon-search"></i></button></input>
-<% end %>
-<% @areas.each do |area| %>
-  <%= link_to area[:area_name], reviews_path(area[:area_name]) %>
-<% end %>
+<div id="index-container">
+  
+  
+  <div id="introduction">
+    <p class="title">Welcome to Study Space!</p>
+    <p class="introduction-phrase">カフェ、シェアオフィス、図書館、、、あなたはいつもどこで勉強していますか？<br>
+    勉強する場所を探すのに手間取り、気がついたら時間がなくなっていた!<br>
+    なんてことありませんか？<br></p>
+    <p class="introduction-phrase">
+    勉強する場所に困ったら、このサイトでみんなのおすすめスペースを探してみましょう。<br>
+    また、お気に入りの場所をみんなとシェアしましょう。</p>
+  </div>
+  
+  <div class="btn-left btn">
+    <span type="button" class="button"><i class="fas fa-search-location"> </i> 勉強スペースを探す</span>
+  </div>
+  <div class="btn-right btn">
+    <span type="button" class="button"><i class="far fa-edit"></i> レビューを書く</span>
+  </div>
+  
+  
+  <!--ここからモーダル-->
+  <div id="search-form">
+    <div class="modal">
+      <i class="far fa-times-circle close-btn fa-2x"></i>
+      <div class="form-content">
+        <span>レビュー対象場所を入力ください</span>
+        <p>例：エクセルシオール　渋谷</p>
+        <%= form_tag search_places_path, method: :get do %>
+          <input name="keyword" placeholder="キーワードで検索" type="text" value="" class="form">
+          <button class="btn-search btn" title="検索" type="submit"><i class="fab fa-sistrix fa-2x"></i></button></input>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="area-index">
+    <div class="area-modal">
+      <i class="far fa-times-circle close-btn fa-2x"></i>
+      <div class="area-content">
+        <span>最寄駅で探す（<%= @areas.length %>）</span>
+        <div class="area-wrap">
+          <% @areas.each do |area| %>
+            <%= link_to area[:area_name], reviews_path(area[:area_name]), class:"area" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="address-search">
+        <span>住所・エリアで検索</span>
+        <%= form_tag search_reviews_path, method: :get do %>
+        <input name="keyword" placeholder="例：渋谷" autocomplete="false" type="text" value="" class="search-form">
+        <button class="btn-search btn" title="検索" type="submit"><i class="fab fa-sistrix fa-2x"></i></button></input>
+        <% end %>
+      </div>
+      <!--ここまでモーダル-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="background">
+  <span class="search-result">検索結果：<%= @places.length %>件</span>
+  <div class="result-content">
+    <% @places.each do |place| %>
+      <%= link_to place[:place_name], place_path(place[:id]),data: {"turbolinks" => false}, class: "result" %>
+      （<%= place[:address] %>）<br>
+    <% end %>
+  </div>
+</div>

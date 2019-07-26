@@ -6,5 +6,9 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  resources :reviews
+  resources :reviews do
+    collection do
+      get 'search'
+    end
+  end
 end
