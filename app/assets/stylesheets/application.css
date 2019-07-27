@@ -17,6 +17,7 @@ body {
   font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
   background-image: url('index_image.jpg');
   background-size: cover; 
+  min-height: 300px;
 }
 header {
   background-color: transparent;
@@ -30,9 +31,9 @@ header {
 
 .menu-logo {
   color: white;
-  font-size: 30px;
-  font-family: 'YuMincho';
-  font-weight: bold;
+  font-size: 35px;
+  font-family: 'Pacifico', cursive;;
+  font-weight: 400;
   letter-spacing: 0.1em;
   margin-left: 20px;
   grid-area: logo;
@@ -213,6 +214,7 @@ header {
 }
 .area {
   font-size: 1.5vw;
+  margin-bottom: 2px;
   display: inline-block;
   text-decoration: none;
   background-color: #4682B4;
@@ -253,7 +255,7 @@ header {
   margin-bottom: 20px;
 }
 .image {
-  width: 200px;
+  width: 310px;
   height: 200px;
-  object-fit: cover;
+  background-size: cover;
 }

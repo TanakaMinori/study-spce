@@ -61,12 +61,22 @@ class PlacesController < ApplicationController
   end
   
   def create
-    Place.create(place_params)
+    review_place = params.require(:place)[:place_name]
+    if Place.find_by(place_name: review_place)
+      @place_id = Place.find_by(place_name: review_place)[:id]
+      Review.create(review_params)
+    else
+      Place.create(place_params)
+    end
   end
   
   private
   def place_params
-    params.require(:place).permit(:place_name, :address, :area_name, :lat, :lon, :url, reviews_attributes: [:category, :recommend_rate, :wifi_rate, :text, :image])
+      params.require(:place).permit(:place_name, :address, :area_name, :lat, :lon, :url, reviews_attributes: [:category, :recommend_rate, :wifi_rate, :text, :image])
+  end
+  
+  def review_params
+    params.require(:place)[:reviews_attributes]["0"].permit(:category, :recommend_rate, :wifi_rate, :text, :image).merge(place_id: @place_id)
   end
 end
  

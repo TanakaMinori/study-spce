@@ -4,7 +4,7 @@
       <%= form_for @place do |f| %>
       <p class="review-place_name"><i class="fas fa-map-marker-alt"></i> レビュー対象：<%= @name %></p>
         <%= f.fields_for :reviews do |r| %>
-          <span><i class="far fa-list-alt"></i> カテゴリ：<%= r.select :category, ["カフェ", "シェアオフィス","その他"] %></span><br>
+          <span><i class="far fa-list-alt"></i> カテゴリ：<%= r.select :category, ["カフェ", "シェアオフィス","図書館","その他"] %></span><br>
           <span><i class="far fa-thumbs-up"></i> おすすめ度 (※1.絶対すすめない〜10.とてもすすめたい)</span>
           <%= r.select :recommend_rate, options_for_select((1..10).to_a) %><br>
           <span><i class="fas fa-wifi"></i> Wifi速度(※1.とても遅い〜10.とても速い)</span>

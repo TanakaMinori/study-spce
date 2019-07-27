@@ -17,7 +17,8 @@
 
 @media screen and (max-width: 550px) {
   .show-container {
-    grid-auto-columns: 100%; } }
+    grid-auto-columns: 100%; }
+}
 #place-container span, p {
   margin-top: 0; }
 
@@ -118,4 +119,4 @@
   margin: 0;
   display: inline; }
 
-/*# sourceMappingURL=places.css.map */
+# sourceMappingURL=places.css.map 
