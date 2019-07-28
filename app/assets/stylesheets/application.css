@@ -21,14 +21,29 @@ body {
 }
 header {
   background-color: transparent;
-  height: 60px;
-  align-content: center;
   display: grid;
-  grid-templete-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 80px;
+  grid-template-columns: 25% 10% 10% 10% 15% 15% 15%;
   grid-template-areas:
-  "logo . . home menu twitter"
+  "logo . . . home menu twitter"
+  ". . . . . menu-bar ."
 }
-
+.menu-bar {
+  display: none;
+  background-color: transparent;
+  align-self: center;
+  grid-area: menu-bar;
+}
+.bar-btn {
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
 .menu-logo {
   color: white;
   font-size: 35px;
@@ -36,14 +51,16 @@ header {
   font-weight: 400;
   letter-spacing: 0.1em;
   margin-left: 20px;
+  cursor: pointer;
+  align-self: center;
   grid-area: logo;
 }
 .home {
   color: white;
   opacity: 0.8;
   font-size: 20px;
-  margin: auto 10px;
   cursor: pointer;
+  align-self: center;
   grid-area: home;
 }
 .home:hover{
@@ -53,15 +70,16 @@ header {
   color: white;
   opacity: 0.8;
   font-size: 20px;
-  margin: auto 10px;
+  display: inline;
   cursor: pointer;
+  align-self: center;
   grid-area: menu;
 }
 .menu:hover{
   opacity: 1;
 }
 .twitter {
-  margin: auto 10px;
+  align-self: center;
   opacity: 0.8;
   grid-area: twitter;
 }

@@ -22,6 +22,20 @@ $(function(){
   location.href = "/";
   });
   
+  $('.menu-logo').click(function(){
+    location.href = "/";
+  });
+  
+  $('.menu').click(function(){
+    if($(this).hasClass('open')){
+      $(this).removeClass('open');
+      $('.menu-bar').show();
+    }else{
+      $(this).addClass('open');
+      $('.menu-bar').hide();
+    };
+  });
+  
   $('.btn-right').click(function(){
     $('#search-form').css("display","block");
     $('.close-btn').click(function(){
