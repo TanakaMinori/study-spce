@@ -1,9 +1,10 @@
 <div class="background">
   <div class="new-form">
     <div class="new-form-content">
-      <%= form_for @place do |f| %>
-      <p class="review-place_name"><i class="fas fa-map-marker-alt"></i> レビュー対象：<%= @name %></p>
+      <%= form_for (@place) do |f| %>
+      <p class="review-place_name"><i class="fas fa-map-marker-alt"></i> レビュー対象：<%= @place.place_name %></p>
         <%= f.fields_for :reviews do |r| %>
+          <span>最寄駅：<%= f.text_field :area_name %></span><br>
           <span><i class="far fa-list-alt"></i> カテゴリ：<%= r.select :category, ["カフェ", "シェアオフィス","図書館","その他"] %></span><br>
           <span><i class="far fa-thumbs-up"></i> おすすめ度 (※1.絶対すすめない〜10.とてもすすめたい)</span>
           <%= r.select :recommend_rate, options_for_select((1..10).to_a) %><br>
@@ -15,12 +16,6 @@
           <%= r.hidden_field :user_id, value: current_user.id %>
         <% end %>
       </div>
-      <%= f.hidden_field :place_name, value: @name.to_s %>
-      <%= f.hidden_field :lat, value: @lat.to_f %>
-      <%= f.hidden_field :lon, value: @lon.to_f %>
-      <%= f.hidden_field :area_name, value: @area.to_s %>
-      <%= f.hidden_field :address, value: @address %>
-      <%= f.hidden_field :url, value: @url %>
       <%= f.submit "投稿する", class: "btn submit-btn" %>
       <% end %>
   </div>

@@ -7,25 +7,49 @@
       
         <div class="wrap">
           <span class="place-index-name">おすすめ度：</span>
-          <% if place.reviews[0][:recommend_rate] <= 1 %>
+          <% if place.review_average <= 1 %>
             <span class="rate rate0"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 2 %>
+          <% elsif place.review_average <= 2 %>
             <span class="rate rate1"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 3 %>
+          <% elsif place.review_average <= 3 %>
             <span class="rate rate1-5"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 4 %>
+          <% elsif place.review_average <= 4 %>
             <span class="rate rate2"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 5 %>
+          <% elsif place.review_average <= 5 %>
             <span class="rate rate2-5"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 6 %>
+          <% elsif place.review_average <= 6 %>
             <span class="rate rate3"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 7 %>
+          <% elsif place.review_average <= 7 %>
             <span class="rate rate3-5"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 8 %>
+          <% elsif place.review_average <= 8 %>
             <span class="rate rate4"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 9 %>
+          <% elsif place.review_average <= 9 %>
             <span class="rate rate4-5"></span>
-          <% elsif place.reviews[0][:recommend_rate] <= 10 %>
+          <% elsif place.review_average <= 10 %>
+            <span class="rate rate5"></span>
+          <% end %>
+        </div>
+        <div class="wrap">
+          <span class="place-index-name">wifi速度：</span>
+          <% if place.wifi_average <= 1 %>
+            <span class="rate rate0"></span>
+          <% elsif place.wifi_average <= 2 %>
+            <span class="rate rate1"></span>
+          <% elsif place.wifi_average <= 3 %>
+            <span class="rate rate1-5"></span>
+          <% elsif place.wifi_average <= 4 %>
+            <span class="rate rate2"></span>
+          <% elsif place.wifi_average <= 5 %>
+            <span class="rate rate2-5"></span>
+          <% elsif place.wifi_average <= 6 %>
+            <span class="rate rate3"></span>
+          <% elsif place.wifi_average <= 7 %>
+            <span class="rate rate3-5"></span>
+          <% elsif place.wifi_average <= 8 %>
+            <span class="rate rate4"></span>
+          <% elsif place.wifi_average <= 9 %>
+            <span class="rate rate4-5"></span>
+          <% elsif place.wifi_average <= 10 %>
             <span class="rate rate5"></span>
           <% end %>
         </div>

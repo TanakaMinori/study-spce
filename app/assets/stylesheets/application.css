@@ -21,78 +21,109 @@ body {
 }
 header {
   background-color: transparent;
-  display: grid;
-  grid-template-rows: 1fr 80px;
-  grid-template-columns: 25% 10% 10% 10% 15% 15% 15%;
-  grid-template-areas:
-  "logo . . . home menu twitter"
-  ". . . . . menu-bar ."
-}
-.menu-bar {
-  display: none;
-  background-color: transparent;
-  align-self: center;
-  grid-area: menu-bar;
-}
-.bar-btn {
-  text-decoration: none;
-  color: white;
-  background-color: transparent;
-  font-size: 20px;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
   margin-top: 10px;
-  margin-left: 10px;
-  display: inline-block;
-  cursor: pointer;
 }
+nav {
+  float: right;
+  margin-top: 10px;
+  font-size: 20px;
+}
+.center {
+  text-align: center;
+}
+/*ここからヘッダー調整*/
 .menu-logo {
   color: white;
   font-size: 35px;
-  font-family: 'Pacifico', cursive;;
+  font-family: 'Pacifico', cursive;
   font-weight: 400;
   letter-spacing: 0.1em;
   margin-left: 20px;
   cursor: pointer;
   align-self: center;
-  grid-area: logo;
+  float: left;
+}
+.menu-logo2 {
+    color: white;
+  font-size: 35px;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin-left: 20px;
+  cursor: pointer;
+  align-self: center;
 }
 .home {
   color: white;
   opacity: 0.8;
-  font-size: 20px;
   cursor: pointer;
-  align-self: center;
-  grid-area: home;
+  display: inline;
+  padding-right: 50px;
 }
 .home:hover{
   opacity: 1;
 }
-.menu {
+.bar-btn {
+  text-decoration: none;
   color: white;
-  opacity: 0.8;
-  font-size: 20px;
   display: inline;
   cursor: pointer;
-  align-self: center;
-  grid-area: menu;
-}
-.menu:hover{
-  opacity: 1;
+  padding-right: 50px;
 }
 .twitter {
-  align-self: center;
+  display: inline;
   opacity: 0.8;
-  grid-area: twitter;
+}
+.twitter-icon{
+  padding-right: 50px;
 }
 .twitter:hover {
   opacity: 1;
 }
+.toggle {
+  display: none;
+  cursor: pointer;
+}
 #tweet-icon-link  {
   color: #55acee;
 }
+/*モバイル表示調整*/
+@media screen and (max-width: 830px) {
+  .toggle {
+    width: 20%;
+    color: #fff;
+    float: right;
+    margin: 20px;
+    display: block;
+    text-align: right;
+  }
+  nav {
+    clear: both;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 60px;
+  }
+  .home, .bar-btn, .twitter {
+    display: block;
+    margin: 0;
+    padding: 0;
+    margin-right: 20px;
+    padding-top: 5px;
+    text-align: right;
+  }
+}
+
 #index-container {
   display: grid;
   width: 88%;
-  margin: 0 auto;
+  margin: auto;
+  margin-top: 80px;
   grid-templete-columns: 1fr 1fr 1fr 1fr;
   grid-templete-rows: 200px 100px auto;
   grid-template-areas:
@@ -142,7 +173,6 @@ header {
   word-spacing: 8px;
   
 }
-
 .btn {
   opacity: 0.8;
 }
@@ -252,10 +282,12 @@ header {
   border-radius: 5px;
   font-size: 18px;
 }
+/*背景*/
 .background{
   width: 70%;
   height: 80%;
-  margin: 30px auto;
+  margin: auto;
+  margin-top: 80px;
   padding: 20px;
   border-radius: 10px;
   background-color: rgba(255,255,255,0.8)
@@ -276,4 +308,198 @@ header {
   width: 310px;
   height: 200px;
   background-size: cover;
+}
+/*ユーザーページ*/
+.mypage-background{
+  width: 70%;
+  height: 80%;
+  margin: 30px auto;
+  padding: 60px 20px 20px 20px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.8);
+  position: relative;
+}
+.pagenation-wrap {
+  background-color: rgba(255,255,255,0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px 10px 0 0;
+  width: 100%;
+  overflow: hidden;
+  height: 50px;
+}
+.pagination {
+  font-size: 20px;
+  height: 50px;
+  margin-right: 20px;
+  /*margin-top: 20px;*/
+}
+.pagination span{
+    padding-right: 10px;
+}
+.page-wrap {
+  display: inline-block;
+  float: right;
+}
+.myreview-count {
+  display: inline-block;
+  float: left;
+  padding-top: 15px;
+  padding-left: 30px;
+}
+.current_page {
+  color: black;
+}
+.first_page, .last_page, .next_page, .prev_page, .page_number{
+  text-decoration: none;
+  color: #bebebe;
+}
+.user-info {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+.user-icon{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+.user-edit {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.user-link {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+}
+.fa-user-cog {
+  opacity: 0.8;
+}
+.fa-user-cog:hover {
+  opacity: 1;
+}
+.myreview-wrap {
+  display: block;
+  margin-left: 15px;
+}
+.myreview {
+  border-left: 5px solid #00008b;
+  padding-left: 20px;
+  margin-bottom: 15px;
+  display: grid;
+  grid-template-areas: 
+  "link myimage"
+  "place myimage"
+}
+.myreview-edit {
+  margin-top: 20px;
+}
+.myreview-edit span{
+  padding-right: 10px;
+  opacity: 0.8;
+}
+.myreview-edit span:hover {
+  opacity: 1;
+}
+.myreview-edit-link{
+  text-decoration: none;
+}
+.place-link {
+  grid-area: link;
+}
+.myreview-place {
+  width: 650px;
+  display: grid;
+  grid-area: place;
+  grid-template-columns: 80px 1fr;
+}
+.myreview-place span {
+  text-align: left;
+}
+.myimage {
+  background-size: cover;
+  width: 200px;
+  height: 150px;
+  border-radius: 15px;
+  display: block;
+  grid-area: myimage; 
+}
+.noimage {
+  width: 200px;
+  height: 150px;
+  border-radius: 15px;
+  border: 1px solid #aaa;
+  text-align: center;
+  grid-area: myimage;
+}
+.noimage-message{
+  margin-top: 60px;
+}
+
+/*モバイル表示調整*/
+@media screen and (max-width: 550px) {
+  .myreview {
+    grid-template-areas: 
+  "link"
+  "place"
+  "myimage"
+  }
+  .background {
+    min-width: 500px;
+    margin: 20px auto;
+  }
+}
+/*devise User sign page*/
+.user-background {
+  width: 70%;
+  height: 80%;
+  margin: auto;
+  margin-top: 100px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.6)
+}
+.user-content{
+  width: 60%;
+  margin: 10px auto;
+}
+.form_area {
+  width: 100%;
+  height: 30px;
+  border-style: none;
+  background-color: transparent;
+  border-bottom: 1px solid #aaa;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+::placeholder {
+  color: rgba(0,0,0,0.4);
+}
+.label {
+  font-size: 20px;
+  opacity: 0.8;
+  font-weight: bold;
+}
+.user-btn {
+  border-style: none;
+  padding: 5px 10px;
+  margin: 10px auto;
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  font-size: 20px;
+  background-color: #ff1493;
+  opacity: 0.8;
+  color: #fff;
+}
+.user-btn:hover{
+  opacity: 1;
 }

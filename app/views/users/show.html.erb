@@ -1,0 +1,105 @@
+  <% if user_signed_in? && current_user.image.attached? %>
+    <div class="user-info">
+      <div class="user-edit">
+        <span><%= image_tag current_user.image, class:"user-icon" %><%= current_user.user_name %> さんのページ</span>
+        <%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class:"user-link" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      </div>
+    </div>
+    <% else %>
+    <div class="user-info">
+      <div class="user-edit">
+        <span><%= current_user.user_name %> さんのページ</span>
+        <%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class:"user-link" do %>
+          <i class="fas fa-user-cog"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+<div class="mypage-background">
+  <div class="pagenation-wrap">
+    <span class="myreview-count">You have <%= @total_reviews_num %> reviews</span>
+    <div class="page-wrap"><%= paginate @reviews %></div>
+  </div>
+  <% if @reviews.blank? %>
+    <p>レビューは書かれていません</p>
+  <% else %>
+  <% @reviews.each do |review| %>
+    <div class="myreview-wrap">
+      <div class="myreview">
+        <%= link_to review.place.place_name, review.place.url, class: "place-link" %>
+        
+        <div class="myreview-place">
+          <span>最寄駅</span>：<%= review.place.area_name %>
+          <span>カテゴリ</span>：<%= review.category %></span>
+          <span><i class="far fa-thumbs-up"></i></span>
+            <div>：
+              <% if review.recommend_rate <= 1 %>
+                <span class="rate rate0"></span>
+              <% elsif review.recommend_rate <= 2 %>
+                <span class="rate rate1"></span>
+              <% elsif review.recommend_rate <= 3 %>
+                <span class="rate rate1-5"></span>
+              <% elsif review.recommend_rate <= 4 %>
+                <span class="rate rate2"></span>
+              <% elsif review.recommend_rate <= 5 %>
+                <span class="rate rate2-5"></span>
+              <% elsif review.recommend_rate <= 6 %>
+                <span class="rate rate3"></span>
+              <% elsif review.recommend_rate <= 7 %>
+                <span class="rate rate3-5"></span>
+              <% elsif review.recommend_rate <= 8 %>
+                <span class="rate rate4"></span>
+              <% elsif review.recommend_rate <= 9 %>
+                <span class="rate rate4-5"></span>
+              <% elsif review.recommend_rate <= 10 %>
+                <span class="rate rate5"></span>
+              <% end %>
+            </div>
+          <span><i class="fas fa-wifi"></i></span>
+          <div>：
+            <% if review.wifi_rate <= 1 %>
+              <span class="rate rate0"></span>
+            <% elsif review.wifi_rate <= 2 %>
+              <span class="rate rate1"></span>
+            <% elsif review.wifi_rate <= 3 %>
+              <span class="rate rate1-5"></span>
+            <% elsif review.wifi_rate <= 4 %>
+              <span class="rate rate2"></span>
+            <% elsif review.wifi_rate <= 5 %>
+              <span class="rate rate2-5"></span>
+            <% elsif review.wifi_rate <= 6 %>
+              <span class="rate rate3"></span>
+            <% elsif review.wifi_rate <= 7 %>
+              <span class="rate rate3-5"></span>
+            <% elsif review.wifi_rate <= 8 %>
+              <span class="rate rate4"></span>
+            <% elsif review.wifi_rate <= 9 %>
+              <span class="rate rate4-5"></span>
+            <% elsif review.wifi_rate <= 10 %>
+              <span class="rate rate5"></span>
+            <% end %>
+          </div>
+          <span><i class="far fa-comment-dots"></i></span>：<%= review.text %>
+          <span>更新日</span>：<%= review.updated_at.to_date %>
+        </div>
+        <% if review.image.attached? %>
+          <div class="myimage" style="background-image: url(<%= rails_blob_path(review.image) %>)"></div>
+        <% else %>
+          <div class="noimage"><div class="noimage-message">No image</div></div>
+        <% end %>
+        <div class="myreview-edit">
+          <span><%= link_to edit_place_path(review),class: "myreview-edit-link", data: {"turbolinks" => false} do %>
+            <i class="far fa-edit"></i>Edit</span>
+          <% end %>
+          <span><%= link_to review_path(review),class: "myreview-edit-link",method: :delete, data: {"turbolinks" => false} do %>
+            <i class="far fa-edit"></i>Delete</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
+</div>

@@ -3,7 +3,8 @@ require 'uri'
 require 'rexml/document'
 
 class PlacesController < ApplicationController
-  
+    before_action :authenticate_user!, except: [:index, :show]
+
   def search
     keyword = params[:keyword]
     @appid = ENV["YAHOO_APP_ID"]
@@ -39,8 +40,13 @@ class PlacesController < ApplicationController
   end
   
   def index
-    areas = Place.select(:area_name, :id)
-    @areas = areas.group(:area_name)
+    @reviews = Review.all
+    areas = []
+    @reviews.each do |review|
+    area = review.place[:area_name]
+    areas << area
+    end
+    @areas = areas.uniq
   end
   
   def show
@@ -60,8 +66,22 @@ class PlacesController < ApplicationController
     @url = params[:url]
   end
   
+  def edit
+    @review = Review.find(params[:id])
+    @place = Place.find(@review.place_id)
+  end
+  
+  def update
+    place = Place.find(params[:id])
+    review = Review.find(params.require(:place)[:reviews_attributes]["0"][:id].to_i)
+    
+    place.update(place_params_update)
+    review.update(review_params_update)
+  end
+  
   def create
     review_place = params.require(:place)[:place_name]
+    
     if Place.find_by(place_name: review_place)
       @place_id = Place.find_by(place_name: review_place)[:id]
       Review.create(review_params)
@@ -72,11 +92,18 @@ class PlacesController < ApplicationController
   
   private
   def place_params
-      params.require(:place).permit(:place_name, :address, :area_name, :lat, :lon, :url, reviews_attributes: [:category, :recommend_rate, :wifi_rate, :text, :image])
+      params.require(:place).permit(:place_name, :address, :area_name, :lat, :lon, :url, reviews_attributes: [:category, :recommend_rate, :wifi_rate, :text, :user_id, :image])
   end
   
   def review_params
-    params.require(:place)[:reviews_attributes]["0"].permit(:category, :recommend_rate, :wifi_rate, :text, :image).merge(place_id: @place_id)
+    params.require(:place)[:reviews_attributes]["0"].permit(:category, :recommend_rate, :wifi_rate, :text,:user_id, :image).merge(place_id: @place_id)
+  end
+  
+  def place_params_update
+    params.require(:place).permit(:area_name)
+  end
+  def review_params_update
+  params.require(:place)[:reviews_attributes]["0"].permit(:category, :recommend_rate, :wifi_rate, :text, :user_id, :image)
   end
 end
  

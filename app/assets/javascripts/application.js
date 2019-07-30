@@ -26,13 +26,13 @@ $(function(){
     location.href = "/";
   });
   
-  $('.menu').click(function(){
+  $('.toggle').click(function(){
     if($(this).hasClass('open')){
       $(this).removeClass('open');
-      $('.menu-bar').show();
+      $('nav').hide();
     }else{
       $(this).addClass('open');
-      $('.menu-bar').hide();
+      $('nav').show();
     };
   });
   
@@ -49,4 +49,12 @@ $(function(){
       $('#area-index').css("display", "none");
     });
   });
+  
+  $('.fa-user-cog').hover(function(){
+    $('.user-edit-pop').css("display", "block");
+  }, function(){
+    $('.user-edit-pop').css("display", "none");
+  }
+  );
+  
 });
