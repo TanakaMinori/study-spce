@@ -26,6 +26,8 @@
          window.onload = function() {
           var ymap = new Y.Map("main-map");
           ymap.setConfigure("dragging", true);
+          ymap.setConfigure("singleClickPan", true);
+          ymap.setConfigure("doubleClickZoom", true);
           var control = new Y.ZoomControl();
           ymap.addControl(control);
           ymap.drawMap(new Y.LatLng(<%= @locations[0][:lon] %>,<%= @locations[0][:lat] %>), 12, Y.LayerSetId.NORMAL);
