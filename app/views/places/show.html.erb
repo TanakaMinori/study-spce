@@ -85,8 +85,12 @@
           <% end %>
         </div><br>
         <span>レビュー：</span>
-        <span><%= review.text %></span>
-        <p>更新日：<%= review.updated_at.to_date%></p>
+        <span><%= review.text %></span><br>
+        <span>更新日：<%= review.updated_at.to_date%></span><br>
+        <span>投稿者：<%= link_to user_path(review.user.id),data: {"turbolinks" => false}, class:"poster-link" do %>
+          <%= review.user.user_name %> <i class="fas fa-user-circle"></i>
+          <% end %>
+        </span>
       </div>
       <% end %>
     </div>

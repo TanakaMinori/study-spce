@@ -1,7 +1,7 @@
   <% if user_signed_in? && current_user.image.attached? %>
     <div class="user-info">
       <div class="user-edit">
-        <span><%= image_tag current_user.image, class:"user-icon" %><%= current_user.user_name %> さんのページ</span>
+        <span><%= image_tag @user.image, class:"user-icon" %><%= @user.user_name %> さんのページ</span>
         <%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class:"user-link" do %>
           <i class="fas fa-user-cog"></i>
         <% end %>
@@ -10,7 +10,7 @@
     <% else %>
     <div class="user-info">
       <div class="user-edit">
-        <span><%= current_user.user_name %> さんのページ</span>
+        <span><%= @user.user_name %> さんのページ</span>
         <%= link_to edit_user_registration_path, data: {"turbolinks" => false}, class:"user-link" do %>
           <i class="fas fa-user-cog"></i>
         <% end %>
@@ -90,14 +90,18 @@
         <% else %>
           <div class="noimage"><div class="noimage-message">No image</div></div>
         <% end %>
-        <div class="myreview-edit">
-          <span><%= link_to edit_place_path(review),class: "myreview-edit-link", data: {"turbolinks" => false} do %>
-            <i class="far fa-edit"></i>Edit</span>
-          <% end %>
-          <span><%= link_to review_path(review),class: "myreview-edit-link",method: :delete, data: {"turbolinks" => false} do %>
-            <i class="far fa-edit"></i>Delete</span>
-          <% end %>
-        </div>
+        
+        <% if user_signed_in? && @user.id == current_user.id %>
+          <div class="myreview-edit">
+            <span><%= link_to edit_place_path(review),class: "myreview-edit-link", data: {"turbolinks" => false} do %>
+              <i class="far fa-edit"></i>Edit</span>
+            <% end %>
+            <span><%= link_to review_path(review),class: "myreview-edit-link",method: :delete, data: {"turbolinks" => false} do %>
+              <i class="far fa-edit"></i>Delete</span>
+            <% end %>
+          </div>
+        <% end %>
+        
       </div>
     </div>
   <% end %>

@@ -532,3 +532,12 @@ nav {
 .sns-btn:hover{
   opacity: 1;
 }
+.poster-link{
+  text-decoration: none;
+  color: #000;
+  opacity: 0.8;
+  cursor: pointer;
+}
+.poster-link:hover {
+  opacity: 1;
+}
