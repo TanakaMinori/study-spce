@@ -51,7 +51,9 @@ class PlacesController < ApplicationController
     
     lon = review.place[:lon]
     lat = review.place[:lat]
-    @locations << {lon: lon, lat: lat}
+    id = review.place[:id]
+    place_name = review.place[:place_name]
+    @locations << {lon: lon, lat: lat, id: id, placeName: place_name}
     end
     @areas = areas.uniq
     gon.locations = @locations

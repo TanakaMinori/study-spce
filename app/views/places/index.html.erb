@@ -30,16 +30,20 @@
           ymap.addControl(control);
           ymap.drawMap(new Y.LatLng(<%= @locations[0][:lon] %>,<%= @locations[0][:lat] %>), 12, Y.LayerSetId.NORMAL);
           
-          var icon = new Y.Icon('https://img.icons8.com/ios-glyphs/30/000000/place-marker.png');
+          var icon = new Y.Icon('/assets/icon.png');
           
           var data = gon.locations;
           var locationMarker = new Array();
           
           for ( var i = 0;  i < data.length ;  i++  ) {
-            locationMarker.push({lon: data[i].lon, lat: data[i].lat});
+            locationMarker.push({lon: data[i].lon, lat: data[i].lat, id: data[i].id, placeName: data[i].placeName});
             }
           for ( var i = 0;  i < locationMarker.length ;  i++ ){
             var marker = new Y.Marker(new Y.LatLng(locationMarker[i].lon,locationMarker[i].lat ), {icon: icon});
+            var placeId = locationMarker[i].id;
+            marker.bindInfoWindow(`<div data-turbolinks="false"><a href=/places/${placeId}>${locationMarker[i].placeName}</a></div>`);
+            console.log(placeId);
+            console.log(locationMarker[i].placeName);
             ymap.addFeature(marker);
             }
             ymap.addFeature(marker);
