@@ -102,18 +102,18 @@ class PlacesController < ApplicationController
   
   private
   def place_params
-      params.require(:place).permit(:place_name, :address, :area_name, :lat, :lon, :url, reviews_attributes: [:category, :recommend_rate, :wifi_rate, :text, :user_id, :image])
+      params.require(:place).permit(:place_name, :address, :area_name, :lat, :lon, :url, reviews_attributes: [:category, :recommend_rate, :wifi_rate, :text, :user_id, :socket, :image])
   end
   
   def review_params
-    params.require(:place)[:reviews_attributes]["0"].permit(:category, :recommend_rate, :wifi_rate, :text,:user_id, :image).merge(place_id: @place_id)
+    params.require(:place)[:reviews_attributes]["0"].permit(:category, :recommend_rate, :wifi_rate, :text,:user_id,:socket, :image).merge(place_id: @place_id)
   end
   
   def place_params_update
     params.require(:place).permit(:area_name)
   end
   def review_params_update
-  params.require(:place)[:reviews_attributes]["0"].permit(:category, :recommend_rate, :wifi_rate, :text, :user_id, :image)
+  params.require(:place)[:reviews_attributes]["0"].permit(:category, :recommend_rate, :wifi_rate, :text, :user_id, :socket,:image)
   end
 end
  

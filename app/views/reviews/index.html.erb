@@ -6,7 +6,7 @@
         <span class="place-index-name"><%= link_to place[:place_name], place_path(place), class: "place-index-name" %></span>
       
         <div class="wrap">
-          <span class="place-index-name">おすすめ度：</span>
+          <span class="place-index-name"><i class="far fa-thumbs-up"></i>：</span>
           <% if place.review_average <= 1 %>
             <span class="rate rate0"></span>
           <% elsif place.review_average <= 2 %>
@@ -30,7 +30,7 @@
           <% end %>
         </div>
         <div class="wrap">
-          <span class="place-index-name">wifi速度：</span>
+          <span class="place-index-name"><i class="fas fa-wifi"></i>：</span>
           <% if place.wifi_average <= 1 %>
             <span class="rate rate0"></span>
           <% elsif place.wifi_average <= 2 %>

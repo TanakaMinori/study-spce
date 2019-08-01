@@ -8,6 +8,8 @@
           <span><i class="far fa-list-alt"></i> カテゴリ：<%= r.select :category, ["カフェ", "シェアオフィス","図書館","その他"] %></span><br>
           <span><i class="far fa-thumbs-up"></i> おすすめ度 (※1.絶対すすめない〜10.とてもすすめたい)</span>
           <%= r.select :recommend_rate, options_for_select((1..10).to_a) %><br>
+          <span><i class="fas fa-plug"></i> コンセント有無</span>
+          <%= r.select :socket, ["あり", "なし", "わからない"] %><br>
           <span><i class="fas fa-wifi"></i> Wifi速度(※1.とても遅い〜10.とても速い)</span>
           <%= r.select :wifi_rate, options_for_select((1..10).to_a) %><br>
           <span><i class="fas fa-pen"></i> 感想・コメント</span><br>
