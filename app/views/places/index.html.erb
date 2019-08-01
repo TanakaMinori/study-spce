@@ -1,6 +1,5 @@
 <div id="index-container">
   
-  
   <div id="introduction">
     <p class="title">Welcome to<span class="menu-logo2">Study Space</span></p>
     <p class="introduction-phrase">カフェ、シェアオフィス、図書館、、、あなたはいつもどこで勉強していますか？<br>
@@ -18,7 +17,35 @@
     <span type="button" class="button"><i class="far fa-edit"></i> レビューを書く</span>
   </div>
   
-  
+  <!--全体のレビュー場所のマップ-->
+    <div id="main-map-container">
+      <div id="main-map"></div>
+    
+      <script type="text/javascript" charset="utf-8" src="https://map.yahooapis.jp/js/V1/jsapi?appid=<%= @appid %>"></script>
+      <script type="text/javascript">
+         window.onload = function() {
+          var ymap = new Y.Map("main-map");
+          ymap.setConfigure("dragging", true);
+          var control = new Y.ZoomControl();
+          ymap.addControl(control);
+          ymap.drawMap(new Y.LatLng(<%= @locations[0][:lon] %>,<%= @locations[0][:lat] %>), 12, Y.LayerSetId.NORMAL);
+          
+          var icon = new Y.Icon('https://img.icons8.com/ios-glyphs/30/000000/place-marker.png');
+          
+          var data = gon.locations;
+          var locationMarker = new Array();
+          
+          for ( var i = 0;  i < data.length ;  i++  ) {
+            locationMarker.push({lon: data[i].lon, lat: data[i].lat});
+            }
+          for ( var i = 0;  i < locationMarker.length ;  i++ ){
+            var marker = new Y.Marker(new Y.LatLng(locationMarker[i].lon,locationMarker[i].lat ), {icon: icon});
+            ymap.addFeature(marker);
+            }
+            ymap.addFeature(marker);
+            }
+      </script>
+  </div>
   <!--ここからモーダル-->
   <div id="search-form">
     <div class="modal">
@@ -51,7 +78,8 @@
         <button class="btn-search btn" title="検索" type="submit"><i class="fab fa-sistrix fa-2x"></i></button></input>
         <% end %>
       </div>
-      <!--ここまでモーダル-->
     </div>
   </div>
+      <!--ここまでモーダル-->
+
 </div>

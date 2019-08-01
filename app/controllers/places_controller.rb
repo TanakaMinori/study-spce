@@ -40,13 +40,21 @@ class PlacesController < ApplicationController
   end
   
   def index
+    @appid = ENV["YAHOO_APP_ID"]
     @reviews = Review.all
     areas = []
+    @locations = []
+    
     @reviews.each do |review|
     area = review.place[:area_name]
     areas << area
+    
+    lon = review.place[:lon]
+    lat = review.place[:lat]
+    @locations << {lon: lon, lat: lat}
     end
     @areas = areas.uniq
+    gon.locations = @locations
   end
   
   def show
